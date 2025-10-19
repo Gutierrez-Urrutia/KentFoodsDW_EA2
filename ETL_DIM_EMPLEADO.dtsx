@@ -1,0 +1,1209 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/18/2025 10:30:57 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-ID1N5P5"
+  DTS:CreatorName="DESKTOP-ID1N5P5\Pablo"
+  DTS:DTSID="{2DA7B95D-FA89-47A0-A5B7-AEF156CBDBCD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
+  DTS:LocaleID="13322"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{0D85C437-97D4-43CA-BF8C-24A89B770742}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ETL DIM EMPLEADO"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{338A07C0-7D92-48FE-80B6-56DBA7642502}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ETL DIM EMPLEADO"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\ETL DIM EMPLEADO\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\ETL DIM EMPLEADO\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\Conditional Split.Inputs[Conditional Split Input].Columns[empleado_id_dw]"
+                      cachedDataType="i4"
+                      cachedName="empleado_id_dw"
+                      lineageId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output].Columns[empleado_id_dw]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL DIM EMPLEADO\Conditional Split.Outputs[INSERTAR NUEVOS REGISTROS]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="INSERTAR NUEVOS REGISTROS"
+                  synchronousInputId="Package\ETL DIM EMPLEADO\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output].Columns[empleado_id_dw]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(empleado_id_dw)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL DIM EMPLEADO\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\ETL DIM EMPLEADO\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\ETL DIM EMPLEADO\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\ETL DIM EMPLEADO\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL DIM EMPLEADO\Destino de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Destino de ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DIM_EMPLEADO"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{23D84588-E533-4215-93C7-447D19D2A232}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.KentFoods_DW]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="31"
+                      cachedName="Nombre"
+                      externalMetadataColumnId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
+                      lineageId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[Cargo]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Cargo"
+                      externalMetadataColumnId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[cargo]"
+                      lineageId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output].Columns[Cargo]" />
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].Columns[EmpleadoID]"
+                      cachedDataType="i4"
+                      cachedName="EmpleadoID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[empleado_id]"
+                      lineageId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output].Columns[EmpleadoID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[empleado_id]"
+                      dataType="i4"
+                      name="empleado_id" />
+                    <externalMetadataColumn
+                      refId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="40"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Inputs[Entrada de destino de ADO NET].ExternalColumns[cargo]"
+                      dataType="wstr"
+                      length="30"
+                      name="cargo" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL DIM EMPLEADO\LEER BBDD"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="LEER BBDD"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        EmpleadoID, Nombre + ' ' + Apellido AS Nombre, Cargo
+FROM            Empleados</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL DIM EMPLEADO\LEER BBDD.Connections[IDbConnection]"
+                  connectionManagerID="{17533299-B2F9-4D71-87A6-58E0A7A3F333}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.KentFoods]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].Columns[EmpleadoID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].ExternalColumns[EmpleadoID]"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].Columns[EmpleadoID]"
+                      name="EmpleadoID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].Columns[Nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].ExternalColumns[Nombre]"
+                      length="31"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].Columns[Nombre]"
+                      name="Nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].Columns[Cargo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].ExternalColumns[Cargo]"
+                      length="30"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].Columns[Cargo]"
+                      name="Cargo"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].ExternalColumns[EmpleadoID]"
+                      dataType="i4"
+                      name="EmpleadoID" />
+                    <externalMetadataColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].ExternalColumns[Nombre]"
+                      dataType="wstr"
+                      length="31"
+                      name="Nombre" />
+                    <externalMetadataColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].ExternalColumns[Cargo]"
+                      dataType="wstr"
+                      length="30"
+                      name="Cargo" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de error de origen de ADO NET].Columns[EmpleadoID]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de error de origen de ADO NET].Columns[EmpleadoID]"
+                      name="EmpleadoID" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de error de origen de ADO NET].Columns[Nombre]"
+                      dataType="wstr"
+                      length="31"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de error de origen de ADO NET].Columns[Nombre]"
+                      name="Nombre" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de error de origen de ADO NET].Columns[Cargo]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de error de origen de ADO NET].Columns[Cargo]"
+                      name="Cargo" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL DIM EMPLEADO\LEER DW"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="LEER DW"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        DIM_EMPLEADO.*
+FROM            DIM_EMPLEADO</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\ETL DIM EMPLEADO\LEER DW.Connections[IDbConnection]"
+                  connectionManagerID="{23D84588-E533-4215-93C7-447D19D2A232}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.KentFoods_DW]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].Columns[empleado_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].ExternalColumns[empleado_id]"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].Columns[empleado_id]"
+                      name="empleado_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      length="40"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].Columns[cargo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].ExternalColumns[cargo]"
+                      length="30"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].Columns[cargo]"
+                      name="cargo"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].ExternalColumns[empleado_id]"
+                      dataType="i4"
+                      name="empleado_id" />
+                    <externalMetadataColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="40"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].ExternalColumns[cargo]"
+                      dataType="wstr"
+                      length="30"
+                      name="cargo" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de error de origen de ADO NET].Columns[empleado_id]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de error de origen de ADO NET].Columns[empleado_id]"
+                      name="empleado_id" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de error de origen de ADO NET].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de error de origen de ADO NET].Columns[cargo]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de error de origen de ADO NET].Columns[cargo]"
+                      name="cargo" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL DIM EMPLEADO\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\ETL DIM EMPLEADO\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\Merge Join.Inputs[Merge Join Left Input].Columns[EmpleadoID]"
+                      cachedDataType="i4"
+                      cachedName="EmpleadoID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Outputs[Sort Output].Columns[EmpleadoID]" />
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\Merge Join.Inputs[Merge Join Left Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="31"
+                      cachedName="Nombre"
+                      lineageId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Outputs[Sort Output].Columns[Nombre]" />
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\Merge Join.Inputs[Merge Join Left Input].Columns[Cargo]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Cargo"
+                      lineageId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Outputs[Sort Output].Columns[Cargo]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\ETL DIM EMPLEADO\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\Merge Join.Inputs[Merge Join Right Input].Columns[empleado_id]"
+                      cachedDataType="i4"
+                      cachedName="empleado_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Outputs[Sort Output].Columns[empleado_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output].Columns[EmpleadoID]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output].Columns[EmpleadoID]"
+                      name="EmpleadoID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ETL DIM EMPLEADO\Merge Join.Inputs[Merge Join Left Input].Columns[EmpleadoID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output].Columns[empleado_id_dw]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output].Columns[empleado_id_dw]"
+                      name="empleado_id_dw">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ETL DIM EMPLEADO\Merge Join.Inputs[Merge Join Right Input].Columns[empleado_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="31"
+                      lineageId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output].Columns[Nombre]"
+                      name="Nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ETL DIM EMPLEADO\Merge Join.Inputs[Merge Join Left Input].Columns[Nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output].Columns[Cargo]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output].Columns[Cargo]"
+                      name="Cargo">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\ETL DIM EMPLEADO\Merge Join.Inputs[Merge Join Left Input].Columns[Cargo]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="ORDENAR POR ID"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Inputs[Sort Input].Columns[EmpleadoID]"
+                      cachedDataType="i4"
+                      cachedName="EmpleadoID"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].Columns[EmpleadoID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Inputs[Sort Input].Columns[Nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="31"
+                      cachedName="Nombre"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].Columns[Nombre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Inputs[Sort Input].Columns[Cargo]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Cargo"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].Columns[Cargo]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Outputs[Sort Output].Columns[EmpleadoID]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Outputs[Sort Output].Columns[EmpleadoID]"
+                      name="EmpleadoID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].Columns[EmpleadoID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Outputs[Sort Output].Columns[Nombre]"
+                      dataType="wstr"
+                      length="31"
+                      lineageId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Outputs[Sort Output].Columns[Nombre]"
+                      name="Nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].Columns[Nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Outputs[Sort Output].Columns[Cargo]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Outputs[Sort Output].Columns[Cargo]"
+                      name="Cargo">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET].Columns[Cargo]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="ORDENAR POR ID 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Inputs[Sort Input].Columns[empleado_id]"
+                      cachedDataType="i4"
+                      cachedName="empleado_id"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].Columns[empleado_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Inputs[Sort Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="nombre"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].Columns[nombre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Inputs[Sort Input].Columns[cargo]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="cargo"
+                      lineageId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].Columns[cargo]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Outputs[Sort Output].Columns[empleado_id]"
+                      dataType="i4"
+                      lineageId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Outputs[Sort Output].Columns[empleado_id]"
+                      name="empleado_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].Columns[empleado_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Outputs[Sort Output].Columns[nombre]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Outputs[Sort Output].Columns[nombre]"
+                      name="nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].Columns[nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Outputs[Sort Output].Columns[cargo]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Outputs[Sort Output].Columns[cargo]"
+                      name="cargo">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET].Columns[cargo]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\ETL DIM EMPLEADO.Paths[INSERTAR NUEVOS REGISTROS]"
+              endId="Package\ETL DIM EMPLEADO\Destino de ADO NET.Inputs[Entrada de destino de ADO NET]"
+              name="INSERTAR NUEVOS REGISTROS"
+              startId="Package\ETL DIM EMPLEADO\Conditional Split.Outputs[INSERTAR NUEVOS REGISTROS]" />
+            <path
+              refId="Package\ETL DIM EMPLEADO.Paths[Merge Join Output]"
+              endId="Package\ETL DIM EMPLEADO\Conditional Split.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\ETL DIM EMPLEADO\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\ETL DIM EMPLEADO.Paths[Salida de origen de ADO NET]"
+              endId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Inputs[Sort Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\ETL DIM EMPLEADO\LEER BBDD.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\ETL DIM EMPLEADO.Paths[Salida de origen de ADO NET1]"
+              endId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Inputs[Sort Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\ETL DIM EMPLEADO\LEER DW.Outputs[Salida de origen de ADO NET]" />
+            <path
+              refId="Package\ETL DIM EMPLEADO.Paths[Sort Output]"
+              endId="Package\ETL DIM EMPLEADO\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\ETL DIM EMPLEADO\ORDENAR POR ID.Outputs[Sort Output]" />
+            <path
+              refId="Package\ETL DIM EMPLEADO.Paths[Sort Output1]"
+              endId="Package\ETL DIM EMPLEADO\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="175,42"
+          Id="Package\ETL DIM EMPLEADO"
+          TopLeft="210,80" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\ETL DIM EMPLEADO">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="133,42"
+          Id="Package\ETL DIM EMPLEADO\LEER BBDD"
+          TopLeft="111,55" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\ETL DIM EMPLEADO\LEER DW"
+          TopLeft="416,52" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\ETL DIM EMPLEADO\ORDENAR POR ID"
+          TopLeft="78,148" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\ETL DIM EMPLEADO\ORDENAR POR ID 1"
+          TopLeft="377,155" />
+        <EdgeLayout
+          Id="Package\ETL DIM EMPLEADO.Paths[Salida de origen de ADO NET]"
+          TopLeft="177.5,97">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-17.5,51"
+              Start="0,0"
+              End="-17.5,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5"
+                    Point2="0,25.5"
+                    Point3="-4,25.5" />
+                  <mssgle:LineSegment
+                    End="-13.5,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.5,25.5"
+                    Point2="-17.5,25.5"
+                    Point3="-17.5,29.5" />
+                  <mssgle:LineSegment
+                    End="-17.5,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL DIM EMPLEADO.Paths[Salida de origen de ADO NET1]"
+          TopLeft="477.5,94">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13.5,61"
+              Start="0,0"
+              End="-13.5,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.5"
+                    Point2="0,30.5"
+                    Point3="-4,30.5" />
+                  <mssgle:LineSegment
+                    End="-9.5,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.5,30.5"
+                    Point2="-13.5,30.5"
+                    Point3="-13.5,34.5" />
+                  <mssgle:LineSegment
+                    End="-13.5,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\ETL DIM EMPLEADO\Merge Join"
+          TopLeft="264,240" />
+        <EdgeLayout
+          Id="Package\ETL DIM EMPLEADO.Paths[Sort Output]"
+          TopLeft="160,190">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="169,50"
+              Start="0,0"
+              End="169,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="4,25" />
+                  <mssgle:LineSegment
+                    End="165,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="165,25"
+                    Point2="169,25"
+                    Point3="169,29" />
+                  <mssgle:LineSegment
+                    End="169,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\ETL DIM EMPLEADO.Paths[Sort Output1]"
+          TopLeft="464,197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-114.666666666667,43"
+              Start="0,0"
+              End="-114.666666666667,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.4863221884498" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.4863221884498"
+                    Point2="0,25.4863221884498"
+                    Point3="-4,25.4863221884498" />
+                  <mssgle:LineSegment
+                    End="-110.666666666667,25.4863221884498" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-110.666666666667,25.4863221884498"
+                    Point2="-114.666666666667,25.4863221884498"
+                    Point3="-114.666666666667,29.4863221884498" />
+                  <mssgle:LineSegment
+                    End="-114.666666666667,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="155,42"
+          Id="Package\ETL DIM EMPLEADO\Conditional Split"
+          TopLeft="255,335" />
+        <EdgeLayout
+          Id="Package\ETL DIM EMPLEADO.Paths[Merge Join Output]"
+          TopLeft="330.75,282">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="176,42"
+          Id="Package\ETL DIM EMPLEADO\Destino de ADO NET"
+          TopLeft="249,446" />
+        <EdgeLayout
+          Id="Package\ETL DIM EMPLEADO.Paths[INSERTAR NUEVOS REGISTROS]"
+          TopLeft="334.75,377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,69"
+              Start="0,0"
+              End="0,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-71.67408203125,25.96337890625,143.3481640625,9.5732421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL DIM EMPLEADO\LEER BBDD">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL DIM EMPLEADO\LEER DW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL DIM EMPLEADO\Destino de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

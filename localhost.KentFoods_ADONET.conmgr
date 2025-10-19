@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="localhost.KentFoods"
+  DTS:DTSID="{17533299-B2F9-4D71-87A6-58E0A7A3F333}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=KentFoods;Integrated Security=True;Application Name=SSIS-KentFoodsDW_EA2-{17533299-B2F9-4D71-87A6-58E0A7A3F333}localhost.KentFoods;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

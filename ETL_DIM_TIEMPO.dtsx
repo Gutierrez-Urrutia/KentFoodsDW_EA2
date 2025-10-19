@@ -1,0 +1,91 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/18/2025 10:31:53 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-ID1N5P5"
+  DTS:CreatorName="DESKTOP-ID1N5P5\Pablo"
+  DTS:DTSID="{0DABD23F-F803-4525-901A-062D9BF0F80D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
+  DTS:LocaleID="13322"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{924C4A9B-6857-4D93-ACB7-E70C88F3F430}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3A80218A-7F1C-41CA-8F9B-0B9EBD632FC8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="EndDate">
+      <DTS:VariableValue
+        DTS:DataType="7">12/31/2500</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B97DB4C0-B146-42B3-8F93-D84C3C22F6C6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="StartDate">
+      <DTS:VariableValue
+        DTS:DataType="7">1/1/1900</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\TABLA CALENDARIO CON SCRIPT SQL"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{7016204F-71C6-4D66-9FAA-861D47C064FB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TABLA CALENDARIO CON SCRIPT SQL"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C868D1E5-5117-4DA8-9678-0181B6EFCA02}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="DECLARE @StartDate date = ?;&#xA;DECLARE @EndDate   date = ?;&#xA;&#xA;SET LANGUAGE Spanish;&#xA;SET DATEFIRST 1;&#xA;&#xA;;WITH Tally AS (&#xA;  SELECT TOP (DATEDIFF(DAY, @StartDate, @EndDate) + 1)&#xA;         ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) - 1 AS n&#xA;  FROM sys.all_objects a CROSS JOIN sys.all_objects b&#xA;),&#xA;Dates AS (&#xA;  SELECT DATEADD(DAY, n, @StartDate) AS d FROM Tally&#xA;),&#xA;Src AS (&#xA;  SELECT&#xA;    YEAR(d)*10000 + MONTH(d)*100 + DAY(d)   AS tiempo_id,&#xA;    DAY(d)                                  AS dia,&#xA;    MONTH(d)                                AS mes,&#xA;    YEAR(d)                                 AS anio,&#xA;    d                                       AS fecha_completa,&#xA;    DATENAME(WEEKDAY,d)                     AS nombre_dia,&#xA;    DATENAME(MONTH,d)                       AS nombre_mes,&#xA;    LEFT(DATENAME(MONTH,d),3)               AS nombre_mes_corto,&#xA;    DATEPART(ISO_WEEK,d)                    AS semana_iso,&#xA;    DATEPART(QUARTER,d)                     AS trimestre,&#xA;    CASE WHEN DATEPART(WEEKDAY,d) IN (6,7) THEN 1 ELSE 0 END AS es_fin_de_semana&#xA;  FROM Dates&#xA;)&#xA;MERGE dbo.DIM_TIEMPO AS T&#xA;USING Src AS S&#xA;  ON T.tiempo_id = S.tiempo_id&#xA;WHEN MATCHED THEN&#xA;  UPDATE SET&#xA;    T.dia               = S.dia,&#xA;    T.mes               = S.mes,&#xA;    T.anio              = S.anio,&#xA;    T.fecha_completa    = S.fecha_completa,&#xA;    T.nombre_dia        = S.nombre_dia,&#xA;    T.nombre_mes        = S.nombre_mes,&#xA;    T.nombre_mes_corto  = S.nombre_mes_corto,&#xA;    T.semana_iso        = S.semana_iso,&#xA;    T.trimestre         = S.trimestre,&#xA;    T.es_fin_de_semana  = S.es_fin_de_semana&#xA;WHEN NOT MATCHED THEN&#xA;  INSERT (tiempo_id, dia, mes, anio, fecha_completa, nombre_dia, nombre_mes, nombre_mes_corto, semana_iso, trimestre, es_fin_de_semana)&#xA;  VALUES (S.tiempo_id, S.dia, S.mes, S.anio, S.fecha_completa, S.nombre_dia, S.nombre_mes, S.nombre_mes_corto, S.semana_iso, S.trimestre, S.es_fin_de_semana);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::StartDate"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::EndDate"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="261,42"
+          Id="Package\TABLA CALENDARIO CON SCRIPT SQL"
+          TopLeft="162,81" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
