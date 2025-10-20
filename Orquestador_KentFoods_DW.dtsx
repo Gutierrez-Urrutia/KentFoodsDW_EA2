@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{9358DD7C-20C7-41A4-9BDB-C4244E8E36BC}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{BD24A002-8827-440C-B381-B26C667047C4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -79,23 +79,6 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\CARGAR DIM TIEMPO SI ESTÁ VACÍA"
-      DTS:CreationName="Microsoft.ExecutePackageTask"
-      DTS:Description="Execute Package Task"
-      DTS:DTSID="{B28B944F-E685-4335-A0A4-35FBB0A0C979}"
-      DTS:ExecutableType="Microsoft.ExecutePackageTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="CARGAR DIM TIEMPO SI ESTÁ VACÍA"
-      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <ExecutePackageTask>
-          <UseProjectReference>True</UseProjectReference>
-          <PackageName>ETL_DIM_TIEMPO.dtsx</PackageName>
-        </ExecutePackageTask>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
       DTS:refId="Package\CARGAR FACT VENTAS"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
@@ -113,26 +96,67 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\VERIFICAR DIM TIEMPO VACIA"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Tarea Ejecutar SQL"
-      DTS:DTSID="{90F6C399-FDC6-408E-98A7-0C743F8B8206}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:refId="Package\LOGICA DIM TIEMPO"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contenedor de secuencias"
+      DTS:DTSID="{FA010648-401C-468E-8B68-BB13E296C967}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="VERIFICAR DIM TIEMPO VACIA"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ObjectName="LOGICA DIM TIEMPO">
       <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{C868D1E5-5117-4DA8-9678-0181B6EFCA02}"
-          SQLTask:SqlStatementSource="SELECT COUNT(*) FROM DIM_TIEMPO"
-          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ResultBinding
-            SQLTask:ResultName="0"
-            SQLTask:DtsVariableName="User::DimTiempoRowCount" />
-        </SQLTask:SqlTaskData>
-      </DTS:ObjectData>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOGICA DIM TIEMPO\CARGAR DIM TIEMPO SI ESTÁ VACÍA"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{B28B944F-E685-4335-A0A4-35FBB0A0C979}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="CARGAR DIM TIEMPO SI ESTÁ VACÍA"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>ETL_DIM_TIEMPO.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOGICA DIM TIEMPO\VERIFICAR DIM TIEMPO VACIA"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{90F6C399-FDC6-408E-98A7-0C743F8B8206}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="VERIFICAR DIM TIEMPO VACIA"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C868D1E5-5117-4DA8-9678-0181B6EFCA02}"
+              SQLTask:SqlStatementSource="SELECT COUNT(*) FROM DIM_TIEMPO"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::DimTiempoRowCount" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOGICA DIM TIEMPO.PrecedenceConstraints[Restricción 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{67963FFA-3A37-4508-8053-C6DBAA4B9437}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::DimTiempoRowCount] == 0"
+          DTS:From="Package\LOGICA DIM TIEMPO\VERIFICAR DIM TIEMPO VACIA"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restricción 5"
+          DTS:To="Package\LOGICA DIM TIEMPO\CARGAR DIM TIEMPO SI ESTÁ VACÍA" />
+      </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
@@ -163,31 +187,11 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
       DTS:CreationName=""
-      DTS:DTSID="{5CE2946B-3808-4641-903A-10EFE6287B22}"
-      DTS:EvalOp="3"
-      DTS:Expression="@[User::DimTiempoRowCount] &gt; 0"
-      DTS:From="Package\VERIFICAR DIM TIEMPO VACIA"
+      DTS:DTSID="{07E16D24-B4BF-42B0-81DE-D35A47809DFC}"
+      DTS:From="Package\LOGICA DIM TIEMPO"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restricción 3"
       DTS:To="Package\CARGAR FACT VENTAS" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
-      DTS:CreationName=""
-      DTS:DTSID="{E1A13A2B-1A73-4AFD-B61C-305618415549}"
-      DTS:From="Package\CARGAR DIM TIEMPO SI ESTÁ VACÍA"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Restricción 4"
-      DTS:To="Package\CARGAR FACT VENTAS" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Restricción 5]"
-      DTS:CreationName=""
-      DTS:DTSID="{67963FFA-3A37-4508-8053-C6DBAA4B9437}"
-      DTS:EvalOp="3"
-      DTS:Expression="@[User::DimTiempoRowCount] == 0"
-      DTS:From="Package\VERIFICAR DIM TIEMPO VACIA"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Restricción 5"
-      DTS:To="Package\CARGAR DIM TIEMPO SI ESTÁ VACÍA" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
@@ -214,51 +218,9 @@
           Id="Package\CARGAR DIM PRODUCTO"
           TopLeft="469.333333333333,89.3333333333333" />
         <NodeLayout
-          Size="257,42"
-          Id="Package\CARGAR DIM TIEMPO SI ESTÁ VACÍA"
-          TopLeft="713.333333333333,223.583333333333" />
-        <NodeLayout
           Size="188,42"
           Id="Package\CARGAR FACT VENTAS"
           TopLeft="361.380952380952,351.619047619048" />
-        <NodeLayout
-          Size="228,42"
-          Id="Package\VERIFICAR DIM TIEMPO VACIA"
-          TopLeft="711,87.6666666666667" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 1]"
-          TopLeft="349.5,128">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="48.8809523809525,223.619047619048"
-              Start="0,0"
-              End="48.8809523809525,216.119047619048">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,171.039180229054" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,171.039180229054"
-                    Point2="0,175.039180229054"
-                    Point3="4,175.039180229054" />
-                  <mssgle:LineSegment
-                    End="44.8809523809525,175.039180229054" />
-                  <mssgle:CubicBezierSegment
-                    Point1="44.8809523809525,175.039180229054"
-                    Point2="48.8809523809525,175.039180229054"
-                    Point3="48.8809523809525,179.039180229054" />
-                  <mssgle:LineSegment
-                    End="48.8809523809525,216.119047619048" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
           TopLeft="120.190476190476,123.666666666667">
@@ -285,6 +247,40 @@
                     Point3="250.190476190476,206.617239300784" />
                   <mssgle:LineSegment
                     End="250.190476190476,220.452380952381" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="349.5,128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="48.8809523809525,223.619047619048"
+              Start="0,0"
+              End="48.8809523809525,216.119047619048">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,171.039180229054" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,171.039180229054"
+                    Point2="0,175.039180229054"
+                    Point3="4,175.039180229054" />
+                  <mssgle:LineSegment
+                    End="44.8809523809525,175.039180229054" />
+                  <mssgle:CubicBezierSegment
+                    Point1="44.8809523809525,175.039180229054"
+                    Point2="48.8809523809525,175.039180229054"
+                    Point3="48.8809523809525,179.039180229054" />
+                  <mssgle:LineSegment
+                    End="48.8809523809525,216.119047619048" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -327,85 +323,19 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="257,42"
+          Id="Package\LOGICA DIM TIEMPO\CARGAR DIM TIEMPO SI ESTÁ VACÍA"
+          TopLeft="7.83333333333303,141.416666666666" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 3]"
-          TopLeft="825,129.666666666667">
+          Id="Package\LOGICA DIM TIEMPO.PrecedenceConstraints[Restricción 5]"
+          TopLeft="156.166666666666,47.5000000000002">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-315.619047619048,221.952380952381"
+              EndConnector="-19.8333333333335,93.9166666666668"
               Start="0,0"
-              End="-315.619047619048,214.452380952381">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,39.6979388770433" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,39.6979388770433"
-                    Point2="0,43.6979388770433"
-                    Point3="-4,43.6979388770433" />
-                  <mssgle:LineSegment
-                    End="-311.619047619048,43.6979388770433" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-311.619047619048,43.6979388770433"
-                    Point2="-315.619047619048,43.6979388770433"
-                    Point3="-315.619047619048,47.6979388770433" />
-                  <mssgle:LineSegment
-                    End="-315.619047619048,214.452380952381" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-165.809523809524,48.6979388770433,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 4]"
-          TopLeft="841.833333333333,265.583333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-326.452380952381,86.0357142857143"
-              Start="0,0"
-              End="-326.452380952381,78.5357142857143">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,59.1824776785715" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,59.1824776785715"
-                    Point2="0,63.1824776785715"
-                    Point3="-4,63.1824776785715" />
-                  <mssgle:LineSegment
-                    End="-322.452380952381,63.1824776785715" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-322.452380952381,63.1824776785715"
-                    Point2="-326.452380952381,63.1824776785715"
-                    Point3="-326.452380952381,67.1824776785714" />
-                  <mssgle:LineSegment
-                    End="-326.452380952381,78.5357142857143" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 5]"
-          TopLeft="861.666666666666,129.666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-19.8333333333336,93.9166666666667"
-              Start="0,0"
-              End="-19.8333333333336,86.4166666666667">
+              End="-19.8333333333335,86.4166666666668">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -416,21 +346,66 @@
                     Point2="0,37.9593495934959"
                     Point3="-4,37.9593495934959" />
                   <mssgle:LineSegment
-                    End="-15.8333333333336,37.9593495934959" />
+                    End="-15.8333333333335,37.9593495934959" />
                   <mssgle:CubicBezierSegment
-                    Point1="-15.8333333333336,37.9593495934959"
-                    Point2="-19.8333333333336,37.9593495934959"
-                    Point3="-19.8333333333336,41.9593495934959" />
+                    Point1="-15.8333333333335,37.9593495934959"
+                    Point2="-19.8333333333335,37.9593495934959"
+                    Point3="-19.8333333333335,41.9593495934959" />
                   <mssgle:LineSegment
-                    End="-19.8333333333336,86.4166666666667" />
+                    End="-19.8333333333335,86.4166666666668" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-17.9166666666668,42.9593495934959,16,16"
+              BoundingBox="-17.9166666666667,42.9593495934959,16,16"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="228,42"
+          Id="Package\LOGICA DIM TIEMPO\VERIFICAR DIM TIEMPO VACIA"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="270,238"
+          Size="270,281"
+          Id="Package\LOGICA DIM TIEMPO"
+          TopLeft="704.642857142857,85" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="704.642857142857,225.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-155.261904761905,147.119047619048"
+              Start="0,0"
+              End="-147.761904761905,147.119047619048">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-73.6309523809525,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-73.6309523809525,0"
+                    Point2="-77.6309523809525,0"
+                    Point3="-77.6309523809525,4" />
+                  <mssgle:LineSegment
+                    End="-77.6309523809525,143.119047619048" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-77.6309523809525,143.119047619048"
+                    Point2="-77.6309523809525,147.119047619048"
+                    Point3="-81.6309523809525,147.119047619048" />
+                  <mssgle:LineSegment
+                    End="-147.761904761905,147.119047619048" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
