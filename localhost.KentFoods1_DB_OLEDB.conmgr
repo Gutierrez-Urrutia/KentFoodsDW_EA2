@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="localhost.KentFoods1"
+  DTS:DTSID="{440EAFF1-0730-4BB3-9887-E4E96755421C}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=KentFoods;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-KentFoodsDW_EA2-{440EAFF1-0730-4BB3-9887-E4E96755421C}localhost.KentFoods1;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
