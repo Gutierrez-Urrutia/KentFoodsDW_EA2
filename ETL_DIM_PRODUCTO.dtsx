@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{545C5C98-E8E1-41DB-B144-C77784FF93BE}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{D21A6305-3E11-4DD0-886F-EB49E041D70E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -1353,9 +1353,9 @@ FROM            Productos INNER JOIN
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="204,42"
-          Id="Package\ETL DIM PRODUCTO\LEER DIM PRODUCTO DW"
-          TopLeft="447,25" />
+          Size="183,42"
+          Id="Package\ETL DIM PRODUCTO\LEER PRODUCTOS DB"
+          TopLeft="126,23" />
         <NodeLayout
           Size="176,42"
           Id="Package\ETL DIM PRODUCTO\Destino de ADO NET"
@@ -1373,9 +1373,9 @@ FROM            Productos INNER JOIN
           Id="Package\ETL DIM PRODUCTO\ORDENAR POR ID"
           TopLeft="140,124" />
         <NodeLayout
-          Size="183,42"
-          Id="Package\ETL DIM PRODUCTO\LEER PRODUCTOS DB"
-          TopLeft="126,23" />
+          Size="204,42"
+          Id="Package\ETL DIM PRODUCTO\LEER DIM PRODUCTO DW"
+          TopLeft="437,18" />
         <NodeLayout
           Size="155,42"
           Id="Package\ETL DIM PRODUCTO\Conditional Split"
@@ -1450,30 +1450,30 @@ FROM            Productos INNER JOIN
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL DIM PRODUCTO.Paths[Salida de origen de ADO NET1]"
-          TopLeft="549,67">
+          TopLeft="539,60">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-33,62"
+              EndConnector="-23,69"
               Start="0,0"
-              End="-33,54.5">
+              End="-23,61.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27" />
+                    End="0,30.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,27"
-                    Point2="0,31"
-                    Point3="-4,31" />
+                    Point1="0,30.5"
+                    Point2="0,34.5"
+                    Point3="-4,34.5" />
                   <mssgle:LineSegment
-                    End="-29,31" />
+                    End="-19,34.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-29,31"
-                    Point2="-33,31"
-                    Point3="-33,35" />
+                    Point1="-19,34.5"
+                    Point2="-23,34.5"
+                    Point3="-23,38.5" />
                   <mssgle:LineSegment
-                    End="-33,54.5" />
+                    End="-23,61.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1566,7 +1566,7 @@ FROM            Productos INNER JOIN
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\ETL DIM PRODUCTO\LEER DIM PRODUCTO DW">
+    design-time-name="Package\ETL DIM PRODUCTO\LEER PRODUCTOS DB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1582,7 +1582,7 @@ FROM            Productos INNER JOIN
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\ETL DIM PRODUCTO\LEER PRODUCTOS DB">
+    design-time-name="Package\ETL DIM PRODUCTO\LEER DIM PRODUCTO DW">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

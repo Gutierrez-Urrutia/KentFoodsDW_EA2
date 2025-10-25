@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="28"
-  DTS:VersionGUID="{B8B10DFF-8ABC-498A-86B0-B85335F09B71}">
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{43FE7B36-01D7-4EF9-B13A-6542EA2ED69B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -4064,7 +4064,7 @@ where [refTable].[tiempo_id] = ?</property>
         <NodeLayout
           Size="224,42"
           Id="Package\ACTUALIZAR MARCA DE AGUA"
-          TopLeft="323,331" />
+          TopLeft="305,332" />
         <NodeLayout
           Size="166,42"
           Id="Package\ETL FACT VENTAS"
@@ -4076,7 +4076,7 @@ where [refTable].[tiempo_id] = ?</property>
         <NodeLayout
           Size="222,42"
           Id="Package\OBTENER MAX FECHA ORDEN"
-          TopLeft="312,247" />
+          TopLeft="304,246" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
           TopLeft="415.75,99">
@@ -4101,30 +4101,18 @@ where [refTable].[tiempo_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 1]"
-          TopLeft="412,197">
+          TopLeft="413.5,197">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="11,50"
+              EndConnector="0,49"
               Start="0,0"
-              End="11,42.5">
+              End="0,41.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21"
-                    Point2="0,25"
-                    Point3="4,25" />
-                  <mssgle:LineSegment
-                    End="7,25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="7,25"
-                    Point2="11,25"
-                    Point3="11,29" />
-                  <mssgle:LineSegment
-                    End="11,42.5" />
+                    End="0,41.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4135,30 +4123,18 @@ where [refTable].[tiempo_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 2]"
-          TopLeft="423,289">
+          TopLeft="416,288">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="12,42"
+              EndConnector="0,44"
               Start="0,0"
-              End="12,34.5">
+              End="0,36.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,17"
-                    Point2="0,21"
-                    Point3="4,21" />
-                  <mssgle:LineSegment
-                    End="8,21" />
-                  <mssgle:CubicBezierSegment
-                    Point1="8,21"
-                    Point2="12,21"
-                    Point3="12,25" />
-                  <mssgle:LineSegment
-                    End="12,34.5" />
+                    End="0,36.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4176,37 +4152,33 @@ where [refTable].[tiempo_id] = ?</property>
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="220,42"
-          Id="Package\ETL FACT VENTAS\ORDENAR POR EMPLEADO ID"
-          TopLeft="118,391" />
-        <NodeLayout
-          Size="190,42"
-          Id="Package\ETL FACT VENTAS\LEER DIM CLIENTE DW"
-          TopLeft="595,483" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\ETL FACT VENTAS\OLE DB Destination"
-          TopLeft="541,1243" />
-        <NodeLayout
-          Size="263,42"
-          Id="Package\ETL FACT VENTAS\LEER ORDENES Y DETALLE ORDEN DB"
-          TopLeft="73,153" />
-        <NodeLayout
-          Size="189,42"
-          Id="Package\ETL FACT VENTAS\LOOKUP FECHA VENTA"
-          TopLeft="530,1060" />
-        <NodeLayout
-          Size="218,42"
-          Id="Package\ETL FACT VENTAS\ORDENAR POR CLIENTE ID 1"
-          TopLeft="577,564" />
-        <NodeLayout
           Size="139,42"
           Id="Package\ETL FACT VENTAS\Merge Join 3"
           TopLeft="562,858" />
         <NodeLayout
-          Size="204,42"
-          Id="Package\ETL FACT VENTAS\LEER DIM PRODUCTO DW"
-          TopLeft="700,672" />
+          Size="220,42"
+          Id="Package\ETL FACT VENTAS\ORDENAR POR EMPLEADO ID"
+          TopLeft="124,391" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\ETL FACT VENTAS\LEER DIM CLIENTE DW"
+          TopLeft="574,481" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\ETL FACT VENTAS\ORDENAR POR CLIENTE ID"
+          TopLeft="315,563" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\ETL FACT VENTAS\Merge Join 1"
+          TopLeft="354,481" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\ETL FACT VENTAS\ORDENAR POR CLIENTE ID 1"
+          TopLeft="557,563" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\ETL FACT VENTAS\Merge Join 2"
+          TopLeft="498,672" />
         <NodeLayout
           Size="222,42"
           Id="Package\ETL FACT VENTAS\ORDENAR POR PRODUCTO ID"
@@ -4220,63 +4192,67 @@ where [refTable].[tiempo_id] = ?</property>
           Id="Package\ETL FACT VENTAS\ORDENAR POR PRODUCTO ID 1"
           TopLeft="660,771" />
         <NodeLayout
-          Size="139,42"
-          Id="Package\ETL FACT VENTAS\Merge Join 2"
-          TopLeft="498,672" />
-        <NodeLayout
-          Size="139,42"
-          Id="Package\ETL FACT VENTAS\Merge Join 1"
-          TopLeft="354,481" />
-        <NodeLayout
-          Size="229,42"
-          Id="Package\ETL FACT VENTAS\ORDENAR POR EMPLEADO ID 1"
-          TopLeft="439,363" />
-        <NodeLayout
-          Size="202,42"
-          Id="Package\ETL FACT VENTAS\LEER DIM EMPLEADO DW"
-          TopLeft="465,184" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\ETL FACT VENTAS\Derived Column"
-          TopLeft="241,289" />
+          Size="204,42"
+          Id="Package\ETL FACT VENTAS\LEER DIM PRODUCTO DW"
+          TopLeft="670,673" />
         <NodeLayout
           Size="188,42"
           Id="Package\ETL FACT VENTAS\LOOKUP FECHA ENVIO"
           TopLeft="533,946" />
         <NodeLayout
-          Size="209,42"
-          Id="Package\ETL FACT VENTAS\ORDENAR POR CLIENTE ID"
-          TopLeft="345,564" />
+          Size="229,42"
+          Id="Package\ETL FACT VENTAS\ORDENAR POR EMPLEADO ID 1"
+          TopLeft="415,394" />
+        <NodeLayout
+          Size="202,42"
+          Id="Package\ETL FACT VENTAS\LEER DIM EMPLEADO DW"
+          TopLeft="435,189" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\ETL FACT VENTAS\Derived Column"
+          TopLeft="162,287" />
+        <NodeLayout
+          Size="263,42"
+          Id="Package\ETL FACT VENTAS\LEER ORDENES Y DETALLE ORDEN DB"
+          TopLeft="102,187" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\ETL FACT VENTAS\OLE DB Destination"
+          TopLeft="537.692307692308,1181.38461538462" />
         <NodeLayout
           Size="228,42"
           Id="Package\ETL FACT VENTAS\CAPTURAR FECHA ENVIO NULL"
-          TopLeft="794,1062" />
+          TopLeft="782,1060" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\ETL FACT VENTAS\LOOKUP FECHA VENTA"
+          TopLeft="530,1060" />
         <EdgeLayout
           Id="Package\ETL FACT VENTAS.Paths[Sort Output5]"
-          TopLeft="686,606">
+          TopLeft="666,605">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-96.6666666666666,66"
+              EndConnector="-76.6666666666666,67"
               Start="0,0"
-              End="-96.6666666666666,58.5">
+              End="-76.6666666666666,59.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.149359886202" />
+                    End="0,35.7425320056899" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,35.149359886202"
-                    Point2="0,39.149359886202"
-                    Point3="-4,39.149359886202" />
+                    Point1="0,35.7425320056899"
+                    Point2="0,39.7425320056899"
+                    Point3="-4,39.7425320056899" />
                   <mssgle:LineSegment
-                    End="-92.6666666666666,39.149359886202" />
+                    End="-72.6666666666666,39.7425320056899" />
                   <mssgle:CubicBezierSegment
-                    Point1="-92.6666666666666,39.149359886202"
-                    Point2="-96.6666666666666,39.149359886202"
-                    Point3="-96.6666666666666,43.149359886202" />
+                    Point1="-72.6666666666666,39.7425320056899"
+                    Point2="-76.6666666666666,39.7425320056899"
+                    Point3="-76.6666666666666,43.7425320056899" />
                   <mssgle:LineSegment
-                    End="-96.6666666666666,58.5" />
+                    End="-76.6666666666666,59.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4287,30 +4263,30 @@ where [refTable].[tiempo_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL FACT VENTAS.Paths[Sort Output4]"
-          TopLeft="449.5,606">
+          TopLeft="419.5,605">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="118,66"
+              EndConnector="126.166666666667,67"
               Start="0,0"
-              End="118,58.5">
+              End="126.166666666667,59.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29" />
+                    End="0,35.7425320056899" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,29"
-                    Point2="0,33"
-                    Point3="4,33" />
+                    Point1="0,35.7425320056899"
+                    Point2="0,39.7425320056899"
+                    Point3="4,39.7425320056899" />
                   <mssgle:LineSegment
-                    End="114,33" />
+                    End="122.166666666667,39.7425320056899" />
                   <mssgle:CubicBezierSegment
-                    Point1="114,33"
-                    Point2="118,33"
-                    Point3="118,37" />
+                    Point1="122.166666666667,39.7425320056899"
+                    Point2="126.166666666667,39.7425320056899"
+                    Point3="126.166666666667,43.7425320056899" />
                   <mssgle:LineSegment
-                    End="118,58.5" />
+                    End="126.166666666667,59.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4321,13 +4297,13 @@ where [refTable].[tiempo_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL FACT VENTAS.Paths[Sort Output3]"
-          TopLeft="228,433">
+          TopLeft="234,433">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="173.666666666667,48"
+              EndConnector="167.666666666667,48"
               Start="0,0"
-              End="173.666666666667,40.5">
+              End="167.666666666667,40.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -4338,13 +4314,13 @@ where [refTable].[tiempo_id] = ?</property>
                     Point2="0,28.4722617354196"
                     Point3="4,28.4722617354196" />
                   <mssgle:LineSegment
-                    End="169.666666666667,28.4722617354196" />
+                    End="163.666666666667,28.4722617354196" />
                   <mssgle:CubicBezierSegment
-                    Point1="169.666666666667,28.4722617354196"
-                    Point2="173.666666666667,28.4722617354196"
-                    Point3="173.666666666667,32.4722617354196" />
+                    Point1="163.666666666667,28.4722617354196"
+                    Point2="167.666666666667,28.4722617354196"
+                    Point3="167.666666666667,32.4722617354196" />
                   <mssgle:LineSegment
-                    End="173.666666666667,40.5" />
+                    End="167.666666666667,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4423,30 +4399,30 @@ where [refTable].[tiempo_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL FACT VENTAS.Paths[Sort Output]"
-          TopLeft="553.5,405">
+          TopLeft="529.5,436">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-108.166666666667,76"
+              EndConnector="-84.1666666666667,45"
               Start="0,0"
-              End="-108.166666666667,68.5">
+              End="-84.1666666666667,37.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,41.0810810810811" />
+                    End="0,22.6927453769559" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,41.0810810810811"
-                    Point2="0,45.0810810810811"
-                    Point3="-4,45.0810810810811" />
+                    Point1="0,22.6927453769559"
+                    Point2="0,26.6927453769559"
+                    Point3="-4,26.6927453769559" />
                   <mssgle:LineSegment
-                    End="-104.166666666667,45.0810810810811" />
+                    End="-80.1666666666667,26.6927453769559" />
                   <mssgle:CubicBezierSegment
-                    Point1="-104.166666666667,45.0810810810811"
-                    Point2="-108.166666666667,45.0810810810811"
-                    Point3="-108.166666666667,49.0810810810811" />
+                    Point1="-80.1666666666667,26.6927453769559"
+                    Point2="-84.1666666666667,26.6927453769559"
+                    Point3="-84.1666666666667,30.6927453769559" />
                   <mssgle:LineSegment
-                    End="-108.166666666667,68.5" />
+                    End="-84.1666666666667,37.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4457,30 +4433,18 @@ where [refTable].[tiempo_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL FACT VENTAS.Paths[Salida de origen de ADO NET2]"
-          TopLeft="802,714">
+          TopLeft="771.5,715">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-31,57"
+              EndConnector="0,56"
               Start="0,0"
-              End="-31,49.5">
+              End="0,48.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,24.5"
-                    Point2="0,28.5"
-                    Point3="-4,28.5" />
-                  <mssgle:LineSegment
-                    End="-27,28.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-27,28.5"
-                    Point2="-31,28.5"
-                    Point3="-31,32.5" />
-                  <mssgle:LineSegment
-                    End="-31,49.5" />
+                    End="0,48.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4491,18 +4455,18 @@ where [refTable].[tiempo_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL FACT VENTAS.Paths[Salida de origen de ADO NET1]"
-          TopLeft="688,525">
+          TopLeft="667.5,523">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,39"
+              EndConnector="0,40"
               Start="0,0"
-              End="0,31.5">
+              End="0,32.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.5" />
+                    End="0,32.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4513,30 +4477,18 @@ where [refTable].[tiempo_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL FACT VENTAS.Paths[Salida de origen de ADO NET]"
-          TopLeft="566,226">
+          TopLeft="532.75,231">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-12.5,137"
+              EndConnector="0,163"
               Start="0,0"
-              End="-12.5,129.5">
+              End="0,155.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,64.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,64.5"
-                    Point2="0,68.5"
-                    Point3="-4,68.5" />
-                  <mssgle:LineSegment
-                    End="-8.5,68.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-8.5,68.5"
-                    Point2="-12.5,68.5"
-                    Point3="-12.5,72.5" />
-                  <mssgle:LineSegment
-                    End="-12.5,129.5" />
+                    End="0,155.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4547,30 +4499,18 @@ where [refTable].[tiempo_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL FACT VENTAS.Paths[OLE DB Source Output]"
-          TopLeft="204.5,195">
+          TopLeft="236.25,229">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="123,94"
+              EndConnector="0,58"
               Start="0,0"
-              End="123,86.5">
+              End="0,50.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,43" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,43"
-                    Point2="0,47"
-                    Point3="4,47" />
-                  <mssgle:LineSegment
-                    End="119,47" />
-                  <mssgle:CubicBezierSegment
-                    Point1="119,47"
-                    Point2="123,47"
-                    Point3="123,51" />
-                  <mssgle:LineSegment
-                    End="123,86.5" />
+                    End="0,50.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4615,30 +4555,18 @@ where [refTable].[tiempo_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL FACT VENTAS.Paths[Merge Join Output1]"
-          TopLeft="423.5,523">
+          TopLeft="421.5,523">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="26,41"
+              EndConnector="0,40"
               Start="0,0"
-              End="26,33.5">
+              End="0,32.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,16.5"
-                    Point2="0,20.5"
-                    Point3="4,20.5" />
-                  <mssgle:LineSegment
-                    End="22,20.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="22,20.5"
-                    Point2="26,20.5"
-                    Point3="26,24.5" />
-                  <mssgle:LineSegment
-                    End="26,33.5" />
+                    End="0,32.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4695,25 +4623,25 @@ where [refTable].[tiempo_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL FACT VENTAS.Paths[Lookup Match Output]"
-          TopLeft="625.5,1102">
+          TopLeft="623.846153846154,1102">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,141"
+              EndConnector="0,79.3846153846155"
               Start="0,0"
-              End="0,133.5">
+              End="0,71.8846153846155">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,133.5" />
+                    End="0,71.8846153846155" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,60.9453125,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,30.1376201923078,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4743,30 +4671,18 @@ where [refTable].[tiempo_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL FACT VENTAS.Paths[Derived Column Output1]"
-          TopLeft="897.5,988">
+          TopLeft="896.75,988">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="10.5,74"
+              EndConnector="0,72"
               Start="0,0"
-              End="10.5,66.5">
+              End="0,64.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,33"
-                    Point2="0,37"
-                    Point3="4,37" />
-                  <mssgle:LineSegment
-                    End="6.5,37" />
-                  <mssgle:CubicBezierSegment
-                    Point1="6.5,37"
-                    Point2="10.5,37"
-                    Point3="10.5,41" />
-                  <mssgle:LineSegment
-                    End="10.5,66.5" />
+                    End="0,64.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4777,30 +4693,18 @@ where [refTable].[tiempo_id] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\ETL FACT VENTAS.Paths[Derived Column Output]"
-          TopLeft="327.5,331">
+          TopLeft="236.5,329">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-99.5,60"
+              EndConnector="0,62"
               Start="0,0"
-              End="-99.5,52.5">
+              End="0,54.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
-                  <mssgle:LineSegment
-                    End="-95.5,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-95.5,30"
-                    Point2="-99.5,30"
-                    Point3="-99.5,34" />
-                  <mssgle:LineSegment
-                    End="-99.5,52.5" />
+                    End="0,54.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4821,59 +4725,7 @@ where [refTable].[tiempo_id] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\ETL FACT VENTAS\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL FACT VENTAS\LEER ORDENES Y DETALLE ORDEN DB">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL FACT VENTAS\LOOKUP FECHA VENTA">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_TIEMPO]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\ETL FACT VENTAS\LEER DIM PRODUCTO DW">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\ETL FACT VENTAS\LEER DIM EMPLEADO DW">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4904,6 +4756,35 @@ where [refTable].[tiempo_id] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\ETL FACT VENTAS\LEER DIM EMPLEADO DW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL FACT VENTAS\LEER ORDENES Y DETALLE ORDEN DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL FACT VENTAS\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\ETL FACT VENTAS\CAPTURAR FECHA ENVIO NULL">
     <Properties>
       <Property>
@@ -4913,6 +4794,29 @@ where [refTable].[tiempo_id] = ?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\ETL FACT VENTAS\LOOKUP FECHA VENTA">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_TIEMPO]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{924C4A9B-6857-4D93-ACB7-E70C88F3F430}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{4C6D8D4C-4523-4315-AF9F-FC171C72833B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -83,7 +83,7 @@
         <NodeLayout
           Size="261,42"
           Id="Package\TABLA CALENDARIO CON SCRIPT SQL"
-          TopLeft="162,81" />
+          TopLeft="144,19" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
